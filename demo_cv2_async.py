@@ -3,6 +3,7 @@ import freenect
 import cv2
 import frame_convert2
 import numpy as np
+import datetime
 
 #cv2.namedWindow('Depth')
 cv2.namedWindow('RGB')
@@ -10,8 +11,8 @@ keep_running = True
 
 def draw_canny(data):
     gray = frame_convert2.video_cv(data)
-    gray = cv2.cvtColor(data, cv2.COLOR_BGR2GRAY)
-    gray = cv2.GaussianBlur(gray, (5, 5), 0)
+    #gray = cv2.cvtColor(data, cv2.COLOR_BGR2GRAY)
+    gray = cv2.GaussianBlur(gray, (3, 3), 0)
     edged = cv2.Canny(gray, 35, 125)
 
     return edged
@@ -19,20 +20,27 @@ def draw_canny(data):
 def display_depth(dev, data, timestamp):
     global keep_running
     #data2 = frame_convert2.pretty_depth_cv(cv2.resize(data, (0, 0), fx=0.25, fy=0.25))
-    #data2 = frame_convert2.pretty_depth_cv(data)
-    data2 = cv2.applyColorMap(data, cv2.COLORMAP_JET)
-    cv2.imshow('Depth', data)
+    data2 = frame_convert2.pretty_depth_cv(data)
+
+    data2 = cv2.applyColorMap(data.astype(np.uint8), cv2.COLORMAP_JET)
+    cv2.imshow('Depth', data2)
     if cv2.waitKey(10) == 27:
         keep_running = False
 
 
 def display_rgb(dev, data, timestamp):
+    t_start = datetime.datetime.now()
     global keep_running
-    
-    calendar = cv2.imread("media/img.jpg", 0)
-    result = find_object(data, calendar)
+
+    data = cv2.resize(data, (0, 0), fx=0.25, fy=0.25)
+    result = draw_canny(cv2.resize(data, (0, 0), fx=4, fy=4))
 
     cv2.imshow('RGB', result)
+    t_end = datetime.datetime.now()
+    t_delta = t_end - t_start
+
+    print(t_delta.microseconds)
+    
     if cv2.waitKey(10) == 27:
         keep_running = False
 
@@ -43,10 +51,10 @@ def body(*args):
 
 
 print('Press ESC in window to stop')
-freenect.runloop(depth=display_depth,
+"""freenect.runloop(depth=display_depth,
                  video=None,
-                 body=body)
-
-"""freenect.runloop(depth=None,
-                 video=display_rgb,
                  body=body)"""
+
+freenect.runloop(depth=None,
+                 video=display_rgb,
+                 body=body)
