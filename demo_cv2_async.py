@@ -35,11 +35,13 @@ def display_rgb(dev, data, timestamp):
     data = cv2.resize(data, (0, 0), fx=0.25, fy=0.25)
     result = draw_canny(cv2.resize(data, (0, 0), fx=4, fy=4))
 
-    cv2.imshow('RGB', result)
     t_end = datetime.datetime.now()
     t_delta = t_end - t_start
 
     print(t_delta.microseconds)
+
+    cv2.putText(result,"Hello World!!!", (0, 0), cv2.FONT_HERSHEY_SIMPLEX, 2, 255)
+    cv2.imshow('RGB', result)
     
     if cv2.waitKey(10) == 27:
         keep_running = False
