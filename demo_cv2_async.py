@@ -31,8 +31,8 @@ def display_rgb(dev, data, timestamp):
     t_start = datetime.datetime.now()
     global keep_running
 
-    result = draw_canny(data)
-    #result = frame_convert2.video_cv(data)
+    #result = draw_canny(data)
+    result = data
 
     t_end = datetime.datetime.now()
     t_delta = t_end - t_start
