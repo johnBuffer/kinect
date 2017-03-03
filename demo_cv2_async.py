@@ -32,6 +32,7 @@ def display_rgb(dev, data, timestamp):
     global keep_running
 
     #result = draw_canny(data)
+    data = frame_convert2.video_cv(data)
     result = data
 
     t_end = datetime.datetime.now()
