@@ -12,9 +12,9 @@ keep_running = True
 def draw_canny(data):
     gray = frame_convert2.video_cv(data)
     gray = cv2.GaussianBlur(gray, (3, 3), 0)
-    #edged = cv2.Canny(gray, 35, 125)
+    edged = cv2.Canny(gray, 35, 125)
 
-    return gray
+    return edged
 
 def display_depth(dev, data, timestamp):
     global keep_running
@@ -33,7 +33,7 @@ def display_rgb(dev, data, timestamp):
 
     #result = draw_canny(data)
     data = frame_convert2.video_cv(data)
-    result = data
+    result = cv2.GaussianBlur(data, (1, 1), 0)
 
     t_end = datetime.datetime.now()
     t_delta = t_end - t_start
