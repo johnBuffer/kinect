@@ -11,7 +11,6 @@ keep_running = True
 
 def draw_canny(data):
     gray = frame_convert2.video_cv(data)
-    #gray = cv2.cvtColor(data, cv2.COLOR_BGR2GRAY)
     gray = cv2.GaussianBlur(gray, (3, 3), 0)
     edged = cv2.Canny(gray, 35, 125)
 
@@ -32,8 +31,8 @@ def display_rgb(dev, data, timestamp):
     t_start = datetime.datetime.now()
     global keep_running
 
-    #result = draw_canny(cv2.resize(data, (0, 0), fx=4, fy=4))
-    result = frame_convert2.video_cv(data)
+    result = draw_canny(cv2.resize(data, (0, 0), fx=4, fy=4))
+    #result = frame_convert2.video_cv(data)
 
     t_end = datetime.datetime.now()
     t_delta = t_end - t_start
