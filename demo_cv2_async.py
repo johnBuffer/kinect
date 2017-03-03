@@ -10,7 +10,7 @@ cv2.namedWindow('RGB')
 keep_running = True
 
 def draw_canny(data):
-    gray = frame_convert2.video_cv(data)
+    #gray = frame_convert2.video_cv(data)
     gray = cv2.GaussianBlur(gray, (3, 3), 0)
     edged = cv2.Canny(gray, 35, 125)
 
