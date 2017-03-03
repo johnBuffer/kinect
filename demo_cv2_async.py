@@ -40,7 +40,7 @@ def display_rgb(dev, data, timestamp):
 
     print(t_delta.microseconds)
 
-    cv2.putText(result,"Hello World!!!", (0, 0), cv2.FONT_HERSHEY_SIMPLEX, 2, 255)
+    cv2.putText(result,"Hello World!!!", (0, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, 255)
     cv2.imshow('RGB', result)
     
     if cv2.waitKey(10) == 27:
