@@ -33,7 +33,7 @@ def display_rgb(dev, data, timestamp):
 
     #result = draw_canny(data)
     data = frame_convert2.video_cv(data)
-    result = cv2.GaussianBlur(data, (1, 1), 0)
+    result = cv2.GaussianBlur(data, (0, 0), 0)
 
     t_end = datetime.datetime.now()
     t_delta = t_end - t_start
