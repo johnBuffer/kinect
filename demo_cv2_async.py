@@ -18,11 +18,11 @@ def draw_canny(data):
 
 def display_depth(dev, data, timestamp):
     global keep_running
-    #data2 = frame_convert2.pretty_depth_cv(cv2.resize(data, (0, 0), fx=0.25, fy=0.25))
-    data2 = frame_convert2.pretty_depth_cv(data)
+    data2 = frame_convert2.pretty_depth_cv(cv2.resize(data, (0, 0), fx=0.25, fy=0.25))
+    #data2 = frame_convert2.pretty_depth_cv(data)
 
-    data2 = cv2.applyColorMap(data.astype(np.uint8), cv2.COLORMAP_JET)
-    cv2.imshow('Depth', data2)
+    #data2 = cv2.applyColorMap(data.astype(np.uint8), cv2.COLORMAP_JET)
+    cv2.imshow('Depth', cv2.resize(data2, (0, 0), fx=4, fy=4))
     if cv2.waitKey(10) == 27:
         keep_running = False
 
@@ -52,10 +52,10 @@ def body(*args):
 
 
 print('Press ESC in window to stop')
-"""freenect.runloop(depth=display_depth,
+freenect.runloop(depth=display_depth,
                  video=None,
-                 body=body)"""
-
-freenect.runloop(depth=None,
-                 video=display_rgb,
                  body=body)
+
+"""freenect.runloop(depth=None,
+                 video=display_rgb,
+                 body=body)"""
