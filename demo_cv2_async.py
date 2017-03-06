@@ -26,7 +26,7 @@ def display_depth(dev, data, timestamp):
     t_end = datetime.datetime.now()
     t_delta = t_end - t_start
     cv2.putText(data, str(1000000/t_delta.microseconds), (0, 25), cv2.FONT_HERSHEY_PLAIN, 2, (127, 0, 0), 2)
-    cv2.imshow('Depth', cv2.resize(data2, (0, 0), fx=4, fy=4))
+    cv2.imshow('Depth', data)
     if cv2.waitKey(10) == 27:
         keep_running = False
 
