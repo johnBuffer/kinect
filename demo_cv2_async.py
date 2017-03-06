@@ -52,10 +52,10 @@ def body(*args):
 
 
 print('Press ESC in window to stop')
-freenect.runloop(depth=display_depth,
+"""freenect.runloop(depth=display_depth,
                  video=None,
-                 body=body)
-
-"""freenect.runloop(depth=None,
-                 video=display_rgb,
                  body=body)"""
+
+freenect.runloop(depth=None,
+                 video=display_rgb,
+                 body=body)
