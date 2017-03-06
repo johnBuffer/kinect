@@ -19,7 +19,7 @@ def draw_canny(data):
 def display_depth(dev, data, timestamp):
     global keep_running
     t_start = datetime.datetime.now()
-    data2 = frame_convert2.pretty_depth_cv(cv2.resize(data, (0, 0), fx=0.25, fy=0.25))
+    #data2 = frame_convert2.pretty_depth_cv(cv2.resize(data, (0, 0), fx=0.25, fy=0.25))
     #data2 = frame_convert2.pretty_depth_cv(data)
 
     #data2 = cv2.applyColorMap(data.astype(np.uint8), cv2.COLORMAP_JET)
