@@ -25,7 +25,7 @@ def display_depth(dev, data, timestamp):
     #data2 = cv2.applyColorMap(data.astype(np.uint8), cv2.COLORMAP_JET)
     t_end = datetime.datetime.now()
     t_delta = t_end - t_start
-    cv2.putText(data, str(1000000/t_delta.microseconds), (0, 25), cv2.FONT_HERSHEY_PLAIN, 2, (127, 0, 0), 2)
+    print(1000000/t_delta.microseconds)
     cv2.imshow('Depth', data)
     if cv2.waitKey(10) == 27:
         keep_running = False
